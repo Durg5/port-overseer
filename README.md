@@ -35,7 +35,7 @@ If you run a lot of local apps on different ports — media servers, AI tools, d
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/port-overseer.git
+git clone https://github.com/Durg5/port-overseer.git
 cd port-overseer
 ```
 
@@ -157,7 +157,7 @@ docker run -d \
   --network host \
   -v $(pwd)/config.yml:/app/config.yml:ro \
   -e OVERSEER_PORT=8765 \
-  your-username/port-overseer
+  Durg5/port-overseer
 ```
 
 > **Note:** `--network host` is required so Port Overseer can read `/proc/net/tcp` and probe `127.0.0.1`.
