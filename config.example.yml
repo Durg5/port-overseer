@@ -1,0 +1,66 @@
+# Port Overseer — Example Configuration
+# ──────────────────────────────────────
+# Copy this file to config.yml and edit it to suit your setup.
+# All fields are optional; the values shown here are the defaults.
+
+
+# ── Branding ──────────────────────────────────────────────────────────────────
+
+# Text shown in the dashboard header
+title: "PORT OVERSEER"
+
+# Accent / highlight color for the header, tiles, and interactive elements.
+# Accepts any valid CSS color: hex (#f59e0b), rgb(…), hsl(…), named colors.
+accent_color: "#f59e0b"
+
+
+# ── Network ───────────────────────────────────────────────────────────────────
+
+# Hostname used to build the clickable service links in the browser.
+# null (default) = auto-detect: Port Overseer uses whatever hostname
+#   the browser navigated to (window.location.hostname).
+# Set explicitly when you're behind a reverse proxy or always access
+#   the server by a fixed name:
+#   host: "homelab.local"
+#   host: "192.168.1.100"
+host: null
+
+# Port that Port Overseer itself listens on.
+# Overridable via: --port <n>  or  OVERSEER_PORT=<n> env var.
+port: 8765
+
+
+# ── Scanning ──────────────────────────────────────────────────────────────────
+
+# Seconds between automatic background rescans.
+scan_interval: 30
+
+# Number of ports probed in parallel.
+max_workers: 20
+
+# Show API-only endpoints (JSON / raw non-HTML responses) as tiles in the
+# dashboard.  When false (default) they are still counted and shown in the
+# status bar as "N api hidden".
+show_api_services: false
+
+# Only ports within [min, max] are considered for scanning.
+port_range:
+  min: 1025
+  max: 65534
+
+# Ports that Port Overseer will never probe, regardless of whether they are
+# listening.  Add any ports you want to hide (e.g., internal APIs, databases).
+excluded_ports:
+  - 22      # SSH
+  - 25      # SMTP
+  - 53      # DNS
+  - 80      # HTTP (common reverse-proxy front end)
+  - 110     # POP3
+  - 143     # IMAP
+  - 443     # HTTPS
+  - 3306    # MySQL / MariaDB
+  - 5432    # PostgreSQL
+  - 6379    # Redis
+  - 27017   # MongoDB
+  - 5672    # RabbitMQ (AMQP)
+  - 4369    # Erlang Port Mapper Daemon

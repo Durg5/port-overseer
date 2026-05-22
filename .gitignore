@@ -1,0 +1,8 @@
+venv/
+config.yml
+__pycache__/
+*.pyc
+*.pyo
+nohup.out
+*.log
+.env

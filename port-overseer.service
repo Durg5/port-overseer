@@ -1,0 +1,29 @@
+# Port Overseer — systemd service template
+# ──────────────────────────────────────────
+# Copy this file to /etc/systemd/system/port-overseer.service
+# then run:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now port-overseer
+#
+# To run as a non-root user on ports > 1024:
+#   Change User= below and ensure the venv python is on the PATH.
+#
+# Edit WorkingDirectory and ExecStart to match your install location.
+
+[Unit]
+Description=Port Overseer — Local Service Dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/port-overseer
+ExecStart=/opt/port-overseer/venv/bin/python app.py
+Restart=on-failure
+RestartSec=5
+# Optional: override config values without editing config.yml
+# Environment=OVERSEER_PORT=80
+# Environment=OVERSEER_TITLE=MY SERVER
+
+[Install]
+WantedBy=multi-user.target
